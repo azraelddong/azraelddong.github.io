@@ -4,36 +4,11 @@
   
   
   <entry>
-    <title>helloword</title>
-    <link href="/2025/05/24/helloword/"/>
-    <url>/2025/05/24/helloword/</url>
-    
-    <content type="html"><![CDATA[<h3 id="这是一个测试文章"><a href="#这是一个测试文章" class="headerlink" title="这是一个测试文章"></a>这是一个测试文章</h3><p><img src="/2025/05/24/helloword/image-20250524121139146.png" alt="image-20250524121139146"></p>]]></content>
-    
-    
-    <categories>
-      
-      <category>测试文章</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>测试</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Java技术</title>
     <link href="/2025/05/23/Java%E6%8A%80%E6%9C%AF/"/>
     <url>/2025/05/23/Java%E6%8A%80%E6%9C%AF/</url>
     
-    <content type="html"><![CDATA[<p>这是第一个Java技术博客文章</p><p><img src="/2025/05/23/Java%E6%8A%80%E6%9C%AF/wallhaven.jpg" alt="wallhaven"></p><p><img src="/2025/05/23/Java%E6%8A%80%E6%9C%AF/image-20250524115644189.png" alt="image-20250524115644189"></p><p>这是一个测试图片😁</p><p><img src="/2025/05/23/Java%E6%8A%80%E6%9C%AF/xdli/Documents/study/blog/source/_posts/Java%E6%8A%80%E6%9C%AF/image-20250524115933448.png" alt="image-20250524115933448"></p><p><img src="/2025/05/23/Java%E6%8A%80%E6%9C%AF/image-20250524121048546.png" alt="image-20250524121048546"></p>]]></content>
+    <content type="html"><![CDATA[<p>这是第一个Java技术博客文章</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@GetMapping(&quot;get-by-id&quot;)</span><br><span class="hljs-keyword">public</span> Result <span class="hljs-title function_">queryById</span><span class="hljs-params">(String id)</span> &#123;<br>    <span class="hljs-keyword">if</span> (StringUtils.isBlank(id))<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ValidationException</span>(<span class="hljs-string">&quot;唯一标识不能为空&quot;</span>);<br>    <span class="hljs-type">DismantleInBound</span> <span class="hljs-variable">entity</span> <span class="hljs-operator">=</span> repository.selectById(id);<br>    Map&lt;String, Object&gt; mapResult = getMapResult(entity);<br>    <span class="hljs-keyword">return</span> Result.successData(mapResult);<br>&#125;<br></code></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> Map&lt;String, Object&gt; <span class="hljs-title function_">getMapResult</span><span class="hljs-params">(DismantleInBound entity)</span> &#123;<br>    Optional.ofNullable(entity)<br>            .ifPresent(o -&gt; &#123;<br>                List&lt;DismantleInBoundItem&gt; itemList = itemRepository.selectByCriteria(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DismantleInBoundItemCriteria</span>() &#123;&#123;<br>                    setInBoundId(o.getId());<br>                &#125;&#125;);<br>                Map&lt;String, String&gt; materialIdentifyCodeMap = materialSnCodeRepository.selectByCriteria(<span class="hljs-keyword">new</span> <span class="hljs-title class_">MaterialSnCodeCriteria</span>() &#123;&#123;<br>                    setRecordIdIn(itemList.stream().map(DismantleInBoundItem::getId).collect(Collectors.toList()));<br>                    setRecordType(MaterialRecordType.CJWZRK);<br>                &#125;&#125;).stream().collect(Collectors.toMap(MaterialSnCode::getRecordId, MaterialSnCode::getMaterialIdentifyCode, (A, B) -&gt; A));<br>                itemList.forEach(s -&gt; s.setMaterialIdentifyCode(materialIdentifyCodeMap.get(s.getId())));<br>                o.modifyItemList(itemList);<br>            &#125;);<br><br>    <span class="hljs-comment">// 如果编辑</span><br>    <span class="hljs-keyword">if</span> (entity.getProcessStatus() == ProcessStatus.DRAFT &amp;&amp; CollectionUtils.isNotEmpty(entity.getItemList())) &#123;<br>        Map&lt;String, Boolean&gt; hasFcMap = dismantleDeviceConfigRepository.selectByCriteria(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DismantleDeviceConfigCriteria</span>() &#123;&#123;<br>            setIdIn(entity.getItemList().stream().map(DismantleInBoundItem::getDismantleDeviceConfigId).distinct().toList());<br>        &#125;&#125;).stream().collect(Collectors.toMap(DismantleDeviceConfig::getId, DismantleDeviceConfig::getHasFc, (A, B) -&gt; A));<br>        List&lt;Map&lt;String, Object&gt;&gt; itemMapList = entity.getItemList()<br>                .stream()<br>                .map(item -&gt; &#123;<br>                    Map&lt;String, Object&gt; map = JsonUtil.jsonToMap(JsonUtil.toString(item));<br>                    <span class="hljs-keyword">if</span> (item.getMaterialCategory() != MaterialCategory.CCFC)<br>                        map.put(<span class="hljs-string">&quot;hasFc&quot;</span>, hasFcMap.get(item.getDismantleDeviceConfigId()));<br>                    <span class="hljs-keyword">return</span> map;<br>                &#125;).collect(Collectors.toList());<br>        Map&lt;String, Object&gt; resultMap = JsonUtil.jsonToMap(JsonUtil.toString(entity));<br>        resultMap.put(<span class="hljs-string">&quot;itemList&quot;</span>, itemMapList);<br>        <span class="hljs-keyword">return</span> resultMap;<br>    &#125;<br>    <span class="hljs-keyword">return</span> JsonUtil.jsonToMap(JsonUtil.toString(entity));<br>&#125;<br><br></code></pre></td></tr></table></figure><p><img src="/2025/05/23/Java%E6%8A%80%E6%9C%AF/image-20250524121048546.png"></p>]]></content>
     
     
     <categories>
