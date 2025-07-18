@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>test</title>
+    <link href="/2025/07/18/test/"/>
+    <url>/2025/07/18/test/</url>
+    
+    <content type="html"><![CDATA[<p>这是一个测试</p><p><img src="/2025/07/18/test/image-20250718150817805.png" alt="image-20250718150817805"></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * id</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">private</span> String id;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 头单据id</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">private</span> String synthesisId;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 物料编码</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">private</span> String materialCode;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 物料名称</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">private</span> String materialName;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 品牌规格</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">private</span> String brand;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 单位</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">private</span> String unit;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>测试category</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>测试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>
