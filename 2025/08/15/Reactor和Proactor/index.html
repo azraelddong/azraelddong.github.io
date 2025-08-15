@@ -19,31 +19,26 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="零拷贝DMA控制器DMA控制器的出现可以解决在数据返回之前，cpu一直处于空置状态，非常浪费系统资源。 在没有DMA控制器之前的时候，CPU需要全程参与拷贝数据的过程，而且CPU不能做其它的事情，I&#x2F;O的过程是这样的：  有DMA控制器之后，CPU不再参与【将数据从磁盘控制器缓冲区拷贝到内核缓冲区的过程，这部分的过程都由DMA控制器负责】，I&#x2F;O的过程是这样的：  传统的文件传">
+    <meta name="description" content="Reactor和Proactor网络模型Reactor 同步非阻塞模型单Reactor 单进程&#x2F;单线程 有3个对象：  Reactor：监听连接请求和分发事件 Acceptor：建立连接 Handler：读写操作  缺点：  无法利用多核CPU性能 当Handler处理的时候，整个进程是没办法处理其它请求的，会造成响应延迟  所以单Reactor 单进程&#x2F;单线程的方案只适合ha">
 <meta property="og:type" content="article">
-<meta property="og:title" content="零拷贝">
-<meta property="og:url" content="http://example.com/2025/08/14/%E9%9B%B6%E6%8B%B7%E8%B4%9D/index.html">
+<meta property="og:title" content="Reactor和Proactor">
+<meta property="og:url" content="http://example.com/2025/08/15/Reactor%E5%92%8CProactor/index.html">
 <meta property="og:site_name" content="Caddy博客">
-<meta property="og:description" content="零拷贝DMA控制器DMA控制器的出现可以解决在数据返回之前，cpu一直处于空置状态，非常浪费系统资源。 在没有DMA控制器之前的时候，CPU需要全程参与拷贝数据的过程，而且CPU不能做其它的事情，I&#x2F;O的过程是这样的：  有DMA控制器之后，CPU不再参与【将数据从磁盘控制器缓冲区拷贝到内核缓冲区的过程，这部分的过程都由DMA控制器负责】，I&#x2F;O的过程是这样的：  传统的文件传">
+<meta property="og:description" content="Reactor和Proactor网络模型Reactor 同步非阻塞模型单Reactor 单进程&#x2F;单线程 有3个对象：  Reactor：监听连接请求和分发事件 Acceptor：建立连接 Handler：读写操作  缺点：  无法利用多核CPU性能 当Handler处理的时候，整个进程是没办法处理其它请求的，会造成响应延迟  所以单Reactor 单进程&#x2F;单线程的方案只适合ha">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2025/08/14/%E9%9B%B6%E6%8B%B7%E8%B4%9D/1.png">
-<meta property="og:image" content="http://example.com/2025/08/14/%E9%9B%B6%E6%8B%B7%E8%B4%9D/2.png">
-<meta property="og:image" content="http://example.com/2025/08/14/%E9%9B%B6%E6%8B%B7%E8%B4%9D/3.png">
-<meta property="og:image" content="http://example.com/2025/08/14/%E9%9B%B6%E6%8B%B7%E8%B4%9D/4.png">
-<meta property="og:image" content="http://example.com/2025/08/14/%E9%9B%B6%E6%8B%B7%E8%B4%9D/5.png">
-<meta property="og:image" content="http://example.com/2025/08/14/%E9%9B%B6%E6%8B%B7%E8%B4%9D/6.png">
-<meta property="og:image" content="http://example.com/2025/08/14/%E9%9B%B6%E6%8B%B7%E8%B4%9D/1-5224127.png">
-<meta property="og:image" content="http://example.com/2025/08/14/%E9%9B%B6%E6%8B%B7%E8%B4%9D/2-5224603.png">
-<meta property="article:published_time" content="2025-08-14T07:14:44.000Z">
-<meta property="article:modified_time" content="2025-08-15T02:27:48.648Z">
+<meta property="og:image" content="http://example.com/2025/08/15/Reactor%E5%92%8CProactor/1.png">
+<meta property="og:image" content="http://example.com/2025/08/15/Reactor%E5%92%8CProactor/3.png">
+<meta property="og:image" content="http://example.com/2025/08/15/Reactor%E5%92%8CProactor/4.png">
+<meta property="article:published_time" content="2025-08-15T03:32:12.000Z">
+<meta property="article:modified_time" content="2025-08-15T04:17:03.152Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="零拷贝">
+<meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2025/08/14/%E9%9B%B6%E6%8B%B7%E8%B4%9D/1.png">
+<meta name="twitter:image" content="http://example.com/2025/08/15/Reactor%E5%92%8CProactor/1.png">
   
   
   
-  <title>零拷贝 - Caddy博客</title>
+  <title>Reactor和Proactor - Caddy博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -225,7 +220,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="零拷贝"></span>
+            <span id="subtitle" data-typed-text="Reactor和Proactor"></span>
           
         </div>
 
@@ -236,8 +231,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-08-14 15:14" pubdate>
-          2025年8月14日 下午
+        <time datetime="2025-08-15 11:32" pubdate>
+          2025年8月15日 中午
         </time>
       </span>
     
@@ -248,7 +243,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          660 字
+          690 字
         
       </span>
     
@@ -296,39 +291,42 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">零拷贝</h1>
+            <h1 id="seo-header">Reactor和Proactor</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="零拷贝"><a href="#零拷贝" class="headerlink" title="零拷贝"></a>零拷贝</h1><h2 id="DMA控制器"><a href="#DMA控制器" class="headerlink" title="DMA控制器"></a>DMA控制器</h2><p>DMA控制器的出现可以解决在数据返回之前，cpu一直处于空置状态，非常浪费系统资源。</p>
-<p>在没有DMA控制器之前的时候，<strong>CPU需要全程参与拷贝数据的过程，而且CPU不能做其它的事情</strong>，I&#x2F;O的过程是这样的：</p>
-<p><img src="/2025/08/14/%E9%9B%B6%E6%8B%B7%E8%B4%9D/1.png" srcset="/img/loading.gif" lazyload alt="无DMA控制器图式"></p>
-<p>有DMA控制器之后，<strong>CPU不再参与【将数据从磁盘控制器缓冲区拷贝到内核缓冲区的过程，这部分的过程都由DMA控制器负责】</strong>，I&#x2F;O的过程是这样的：</p>
-<p><img src="/2025/08/14/%E9%9B%B6%E6%8B%B7%E8%B4%9D/2.png" srcset="/img/loading.gif" lazyload alt="有DMA控制器"></p>
-<h2 id="传统的文件传输"><a href="#传统的文件传输" class="headerlink" title="传统的文件传输"></a>传统的文件传输</h2><p><img src="/2025/08/14/%E9%9B%B6%E6%8B%B7%E8%B4%9D/3.png" srcset="/img/loading.gif" lazyload alt="传统文件传输图"></p>
-<p><strong>一共发生了4次上下文切换，和4次拷贝</strong>，无疑会浪费CPU资源，降低系统性能。</p>
-<p>优化方案：<strong>减少上下文切换和拷贝次数</strong></p>
-<h2 id="如何实现零拷贝"><a href="#如何实现零拷贝" class="headerlink" title="如何实现零拷贝"></a>如何实现零拷贝</h2><p>零拷贝方案有2种：</p>
+                <h1 id="Reactor和Proactor网络模型"><a href="#Reactor和Proactor网络模型" class="headerlink" title="Reactor和Proactor网络模型"></a>Reactor和Proactor网络模型</h1><h2 id="Reactor-同步非阻塞模型"><a href="#Reactor-同步非阻塞模型" class="headerlink" title="Reactor 同步非阻塞模型"></a>Reactor 同步非阻塞模型</h2><h3 id="单Reactor-单进程-单线程"><a href="#单Reactor-单进程-单线程" class="headerlink" title="单Reactor 单进程&#x2F;单线程"></a>单Reactor 单进程&#x2F;单线程</h3><p><img src="/2025/08/15/Reactor%E5%92%8CProactor/1.png" srcset="/img/loading.gif" lazyload alt="单Reactor单进程&#x2F;单线程图"></p>
+<p>有3个对象：</p>
 <ul>
-<li>mmap + write</li>
-<li>sendfile</li>
+<li>Reactor：监听连接请求和分发事件</li>
+<li>Acceptor：建立连接</li>
+<li>Handler：读写操作</li>
 </ul>
-<h3 id="mmap-write"><a href="#mmap-write" class="headerlink" title="mmap + write"></a>mmap + write</h3><p><img src="/2025/08/14/%E9%9B%B6%E6%8B%B7%E8%B4%9D/4.png" srcset="/img/loading.gif" lazyload alt="mmap+write实现的零拷贝图"></p>
-<p>mmap+write方案，<strong>减少了从内核态缓冲区拷贝到用户态缓冲区，用户态缓冲区拷贝再拷贝到内核态缓冲区的过程，直接在内核态中拷贝，减少了一次数据拷贝，还是4次上下文切换</strong>。</p>
-<h3 id="sendfile（Kafka）"><a href="#sendfile（Kafka）" class="headerlink" title="sendfile（Kafka）"></a>sendfile（Kafka）</h3><p><img src="/2025/08/14/%E9%9B%B6%E6%8B%B7%E8%B4%9D/5.png" srcset="/img/loading.gif" lazyload alt="sendfile零拷贝图"></p>
-<p>sendfile方案，<strong>只有2次上下文切换和3次拷贝</strong>，相比mmap+write方案，少了2次上下文切换，不需要用户态和内核态切换了。</p>
-<p>如果网卡支持SG-DMA技术的话，还能继续优化，这才是真正的零拷贝方案：</p>
-<p><img src="/2025/08/14/%E9%9B%B6%E6%8B%B7%E8%B4%9D/6.png" srcset="/img/loading.gif" lazyload alt="SG-DMA零拷贝图"></p>
-<p>🌈 SG-DMA（<em>The Scatter-Gather Direct Memory Access</em>）方案，只有2次上线文切换和2次拷贝，内核态缓冲区只拷贝描述符和数据长度信息到socket缓冲区中，真正的数据通过SG-DMA直接从内核缓冲区拷贝到网卡中，全程没有CPU拷贝过程，CPU全程不参与，所有数据都是通过DMA控制器来操作的。</p>
-<h2 id="大文件如何传输"><a href="#大文件如何传输" class="headerlink" title="大文件如何传输"></a>大文件如何传输</h2><p><img src="/2025/08/14/%E9%9B%B6%E6%8B%B7%E8%B4%9D/1-5224127.png" srcset="/img/loading.gif" lazyload alt="原始拷贝图"></p>
-<p><strong>客户端在发起读请求后，会一直阻塞等待数据返回</strong>，如何文件数据特别大的时候，在将磁盘控制器缓冲区数据拷贝到Pagecache缓冲区中的步骤就会比较多余，因为PageCache文件太大了，直接将PageCache缓冲区给占满了，再次访问的概率会比较低，所以可以使用<strong>异步I&#x2F;O</strong>来解决。</p>
-<p><img src="/2025/08/14/%E9%9B%B6%E6%8B%B7%E8%B4%9D/2-5224603.png" srcset="/img/loading.gif" lazyload alt="异步IO图"></p>
-<p>所以，在高并发场景，大文件传输的情景下，最好的方案是**【异步I&#x2F;O + 直接I&#x2F;O】**来代替零拷贝方案。</p>
-<p>在nginx中的配置方案：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">location</span> /video/&#123;<br>	<span class="hljs-attribute">sendfile</span> <span class="hljs-literal">on</span>;<br>	<span class="hljs-attribute">aio</span> <span class="hljs-literal">on</span>;<br>  <span class="hljs-attribute">directio</span> <span class="hljs-number">1024m</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>当文件大于1024m的时候，使用异步I&#x2F;O+直接I&#x2F;O的方式替代sendfile零拷贝。</p>
+<p>缺点：</p>
+<ul>
+<li>无法利用多核CPU性能</li>
+<li>当Handler处理的时候，整个进程是没办法处理其它请求的，会造成响应延迟</li>
+</ul>
+<p>所以单Reactor 单进程&#x2F;单线程的方案只适合handler处理特快的应用场景。</p>
+<h3 id="单Reactor-多线程-多进程"><a href="#单Reactor-多线程-多进程" class="headerlink" title="单Reactor 多线程&#x2F;多进程"></a>单Reactor 多线程&#x2F;多进程</h3><p><img src="/2025/08/15/Reactor%E5%92%8CProactor/3.png" srcset="/img/loading.gif" lazyload alt="单Reactor 多线程&#x2F;多进程图"></p>
+<p>引入来多线程的方式，可以充分利用多核CPU，但是也会有线程竞争资源的问题，所以在子线程处理完后结果发送给Handler的时候，需要加锁，因为涉及共享数据的问题。</p>
+<h3 id="多Reactor-多进程-多线程"><a href="#多Reactor-多进程-多线程" class="headerlink" title="多Reactor 多进程&#x2F;多线程"></a>多Reactor 多进程&#x2F;多线程</h3><p><img src="/2025/08/15/Reactor%E5%92%8CProactor/4.png" srcset="/img/loading.gif" lazyload alt="多Reactor 多进程&#x2F;多线程图"></p>
+<p>优势：</p>
+<ul>
+<li>主线程和子线程分工明确，主线程负责新连接，子线程负责后续的处理</li>
+<li>主线程只需要将新连接分发给子线程，子线程无须返回数据，直接就可以将子线程的结果返回给客户端</li>
+</ul>
+<p>大名鼎鼎的Netty和Memcache都是使用来多Rector 多线程的方式来实现的，Nginx使用的是多Rector 多进程的方式。</p>
+<h2 id="Proactor-异步非阻塞模型"><a href="#Proactor-异步非阻塞模型" class="headerlink" title="Proactor 异步非阻塞模型"></a>Proactor 异步非阻塞模型</h2><p>Proactor采用的是异步I&#x2F;O模式，所以叫异步非阻塞模型</p>
+<p>Proactor和Reactor的区别：</p>
+<ul>
+<li>Reactor同步非阻塞，感知的是<strong>就绪可读写事件</strong>，每次感知到有事件的时候，需要应用程序主动的调用read函数来读取，也就是应用程序主动将socket缓存中的数据拷贝到应用程序缓存中，这个过程是同步的，读完之后才能处理数据。</li>
+<li>Proactor异步非阻塞，感知的是<strong>已完成事件</strong>，在发起异步读写请求的时候，系统内核会自动的处理好数据，这里的读写工作全部由系统内核来完成，并不需要像Reactor一样，应用程序主动调用read&#x2F;write来读写数据，系统内核处理好数据后，会主动通知应用来直接处理数据，也就是将socket缓存中的数据拷贝到应用程序缓存中是系统内核自动完成的。</li>
+</ul>
+<p>注意：</p>
+<p>可惜的是，在Linux中的异步I&#x2F;O是不完善的，aio不是真正的系统内核级别支持的，是在用户空见模拟出来的。并且只支持本地文件的aio异步操作，不支持网络socket，所以linux的高性能网络模式都是使用的Reactor模式。</p>
+<p>而windows有一整套aio的socket异步编程接口（<strong>IOCP</strong>），是系统内核级别实现的异步IO，因此在windows中可以使用Proactor模型方案。</p>
 
                 
               </div>
@@ -362,7 +360,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E9%9B%B6%E6%8B%B7%E8%B4%9D/" class="print-no-link">#零拷贝</a>
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="print-no-link">#计算机网络</a>
       
     </div>
   
@@ -374,8 +372,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>零拷贝</div>
-      <div>http://example.com/2025/08/14/零拷贝/</div>
+      <div>Reactor和Proactor</div>
+      <div>http://example.com/2025/08/15/Reactor和Proactor/</div>
     </div>
     <div class="license-meta">
       
@@ -387,7 +385,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年8月14日</div>
+          <div>2025年8月15日</div>
         </div>
       
       
@@ -419,18 +417,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/08/15/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/" title="I/O多路复用">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">I/O多路复用</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/08/14/NIO%E7%BE%A4%E8%81%8A/" title="NIO群聊">
-                        <span class="hidden-mobile">NIO群聊</span>
+                      <a href="/2025/08/15/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/" title="I/O多路复用">
+                        <span class="hidden-mobile">I/O多路复用</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
