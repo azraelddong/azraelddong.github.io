@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://example.com/2025/08/12/netty/image-20250812171744045.png">
 <meta property="og:image" content="http://example.com/2025/08/12/netty/image-20250813115308065.png">
 <meta property="article:published_time" content="2025-08-12T06:16:42.000Z">
-<meta property="article:modified_time" content="2025-08-14T07:14:17.354Z">
+<meta property="article:modified_time" content="2025-09-15T03:55:59.177Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="netty">
 <meta name="twitter:card" content="summary_large_image">
@@ -244,7 +244,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          1.3k 字
         
       </span>
     
@@ -255,7 +255,7 @@
         
         
         
-          9 分钟
+          11 分钟
         
       </span>
     
@@ -361,6 +361,19 @@
 <p>NIO实现的简易群聊功能：<a href="/2025/08/14/NIO%E7%BE%A4%E8%81%8A/" title="NIO群聊">NIO群聊</a></p>
 <h4 id="零拷贝"><a href="#零拷贝" class="headerlink" title="零拷贝"></a>零拷贝</h4><p>两种零拷贝：mmap和sendfile</p>
 <p>具体原理详解：<a href="/2025/08/14/%E9%9B%B6%E6%8B%B7%E8%B4%9D/" title="零拷贝">零拷贝</a></p>
+<h2 id="Netty"><a href="#Netty" class="headerlink" title="Netty"></a>Netty</h2><p>经典三个问题：</p>
+<ul>
+<li>默认情况下，Netty服务端应该起多少线程？何时启动？</li>
+<li>Netty如何解决jdk的NIO中空轮训bug的？</li>
+</ul>
+<p>创建新的selector替换eventLoop事件循环中的selector</p>
+<ul>
+<li>Netty如何保证异步串行无锁的？</li>
+</ul>
+<p>判断当前线程和创建NioEventLoop的线程是否相同，相同则执行，不相同，就封装成任务放到任务队列中。执行任务handler的Pipeline调用链是单线程执行的，如果不主动调用切换线程，一直会由NioEventLoop线程执行，期间不进行线程切换，这种方式避免了多线程并发操作导致的锁竞争问题。</p>
+<h3 id="NioEventLoop"><a href="#NioEventLoop" class="headerlink" title="NioEventLoop"></a>NioEventLoop</h3><p>事件循环，里面绑定了一个selector和一个taskQueue任务队列，是一个无限循环的线程，不断监听NIO事件的监听。</p>
+<p>selector可以绑定多个NioChannel通道</p>
+<h3 id="Pipeline通道"><a href="#Pipeline通道" class="headerlink" title="Pipeline通道"></a>Pipeline通道</h3><p>里面包含了管道（channel）和channelHandler管道处理器的双向链表</p>
 
                 
               </div>
@@ -461,8 +474,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/07/25/english/" title="english">
-                        <span class="hidden-mobile">english</span>
+                      <a href="/2025/07/22/oracle-tools/" title="oracle-tools">
+                        <span class="hidden-mobile">oracle-tools</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
