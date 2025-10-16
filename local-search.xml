@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>bc_linux安装包命令</title>
+    <link href="/2025/10/16/bc-linux%E5%AE%89%E8%A3%85%E5%8C%85%E5%91%BD%E4%BB%A4/"/>
+    <url>/2025/10/16/bc-linux%E5%AE%89%E8%A3%85%E5%8C%85%E5%91%BD%E4%BB%A4/</url>
+    
+    <content type="html"><![CDATA[<h1 id="BC-Linux安装包命令语句"><a href="#BC-Linux安装包命令语句" class="headerlink" title="BC_Linux安装包命令语句"></a>BC_Linux安装包命令语句</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">rpm -Uvh *.rpm --nodeps --force<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>运维</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>bc_linux</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>分布式消息队列中间件</title>
     <link href="/2025/10/14/mq/"/>
     <url>/2025/10/14/mq/</url>
