@@ -243,13 +243,257 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/07/22/oracle-tools/" target="_self">
+        <a href="/2025/08/15/%E6%A1%86%E6%9E%B6/netty/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/" target="_self">
+          I/O多路复用
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/08/15/%E6%A1%86%E6%9E%B6/netty/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/" target="_self">
+        <div>
+          select&#x2F;poll&#x2F;epoll 多路复用select&#x2F;pollselectselect实现多路复用的方式，就是将所有连接的socket放入到文件描述符集和中，调用select函数将文件描述符集和拷贝到内核中，通过遍历的方式来判断是否有事件发生。当检测到有事件发生时，会将socket标记成可读或可写，然后再将文件描述符集和拷贝到用户态，在用户态再遍历来判断哪些soc
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-08-15 11:14" pubdate>
+              2025-08-15
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="category-chain-item">计算机网络</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">#计算机网络</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/08/14/%E6%A1%86%E6%9E%B6/netty/%E9%9B%B6%E6%8B%B7%E8%B4%9D/" target="_self">
+          零拷贝
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/08/14/%E6%A1%86%E6%9E%B6/netty/%E9%9B%B6%E6%8B%B7%E8%B4%9D/" target="_self">
+        <div>
+          零拷贝DMA控制器DMA控制器的出现可以解决在数据返回之前，cpu一直处于空置状态，非常浪费系统资源。 在没有DMA控制器之前的时候，CPU需要全程参与拷贝数据的过程，而且CPU不能做其它的事情，I&#x2F;O的过程是这样的：  有DMA控制器之后，CPU不再参与【将数据从磁盘控制器缓冲区拷贝到内核缓冲区的过程，这部分的过程都由DMA控制器负责】，I&#x2F;O的过程是这样的：  传统的文件传
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-08-14 15:14" pubdate>
+              2025-08-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="category-chain-item">计算机网络</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9B%B6%E6%8B%B7%E8%B4%9D/">#零拷贝</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/08/14/%E6%A1%86%E6%9E%B6/netty/NIO%E7%BE%A4%E8%81%8A/" target="_self">
+          NIO群聊
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/08/14/%E6%A1%86%E6%9E%B6/netty/NIO%E7%BE%A4%E8%81%8A/" target="_self">
+        <div>
+          使用NIO实现一个简易的群聊功能 Server端： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-08-14 15:09" pubdate>
+              2025-08-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NIO/" class="category-chain-item">NIO</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/NIO/">#NIO</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/08/12/%E6%A1%86%E6%9E%B6/netty/netty/" target="_self">
+          Netty学习
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/08/12/%E6%A1%86%E6%9E%B6/netty/netty/" target="_self">
+        <div>
+          Netty学习Netty是一个异步的，基于事件驱动的网络框架。 书籍推荐：  netty in action（偏实战） netty权威指南（netty5理论）  BIO、NIOBIO阻塞IO实现服务端ServerSocket服务 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-08-12 14:16" pubdate>
+              2025-08-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/netty/" class="category-chain-item">netty</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/netty/">#netty</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/07/22/%E8%BF%90%E7%BB%B4/oracle-tools/" target="_self">
           oracle-tools
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/07/22/oracle-tools/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/07/22/%E8%BF%90%E7%BB%B4/oracle-tools/" target="_self">
         <div>
           oracle小技巧在oracle中，有一些命令执行效率非常高  inset int ….. select … from table：将查询表的数据直接插入到对应表中  实测备份库25w左右的数据（包含大字段），执行上面的命令花费不到10s的时间，可以有效进行表之间的数据备份  CREATE TABLE … AS SELECT … ：创建表并备份数据  创建表和字段名称来备份查询的数据库表数据，效率
         </div>
@@ -304,13 +548,13 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/05/24/mybatis%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" target="_self">
+        <a href="/2025/05/24/%E6%A1%86%E6%9E%B6/mybatis/mybatis%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" target="_self">
           mybatis源码解析
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/05/24/mybatis%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/05/24/%E6%A1%86%E6%9E%B6/mybatis/mybatis%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" target="_self">
         <div>
           MyBatis源码解析MyBatis是什么？MyBatis是一款优秀的持久层框架，支持定制化SQL、存储过程以及高级映射。MyBatis避免了几乎所有的jdbc代码和手动设置参数和获取结果集。 为什么要使用MyBatis？1、减轻jdbc复杂性，不用编写重复的代码 2、处理简单，让开发者更加专注sql的处理 MYBATIS执行器和处理器执行器（Executor） SimpleExecutor：普通
         </div>
