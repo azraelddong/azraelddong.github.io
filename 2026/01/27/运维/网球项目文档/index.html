@@ -19,28 +19,31 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="突击检查MySql索引事务QA：并发操作会导致什么问题？ e.g： 脏读：读到还没提交的数据 不可重复读：在一个事务内，两次读取的同一数据，数据出现不一致情况 幻读：在一个事务内，两次读取的记录数量不一致 QA：事务隔离级别有哪些？ e.g： 读未提交：会有脏读、不可重复读和幻读问题 读已提交：会有不可重复读和幻读问题 可重复读：会出现幻读问题 串行化：无事务问题 QA：MySql默认隔离级别是【">
+    <meta name="description" content="网球学练场项目运行文档 [!NOTE] 参考地址：http:&#x2F;&#x2F;oa.infoepoch.com&#x2F;issue&#x2F;34040  项目下载 依赖框架：http:&#x2F;&#x2F;gitlab.infoepoch.com&#x2F;rdd&#x2F;wqxlg-framework 后端项目：http:&#x2F;&#x2F;gitlab.infoepoch.com&#x2F;rdd&#x2F;wqxlg-admin 后管前端项目：http:&#x2F;&#x2F;gitlab.infoepoch.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="突击检查">
-<meta property="og:url" content="http://example.com/2025/10/27/%E9%9D%A2%E8%AF%95/%E7%AA%81%E5%87%BB%E6%A3%80%E6%9F%A5/index.html">
+<meta property="og:title" content="网球项目文档">
+<meta property="og:url" content="http://example.com/2026/01/27/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%90%83%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/index.html">
 <meta property="og:site_name" content="Caddy博客">
-<meta property="og:description" content="突击检查MySql索引事务QA：并发操作会导致什么问题？ e.g： 脏读：读到还没提交的数据 不可重复读：在一个事务内，两次读取的同一数据，数据出现不一致情况 幻读：在一个事务内，两次读取的记录数量不一致 QA：事务隔离级别有哪些？ e.g： 读未提交：会有脏读、不可重复读和幻读问题 读已提交：会有不可重复读和幻读问题 可重复读：会出现幻读问题 串行化：无事务问题 QA：MySql默认隔离级别是【">
+<meta property="og:description" content="网球学练场项目运行文档 [!NOTE] 参考地址：http:&#x2F;&#x2F;oa.infoepoch.com&#x2F;issue&#x2F;34040  项目下载 依赖框架：http:&#x2F;&#x2F;gitlab.infoepoch.com&#x2F;rdd&#x2F;wqxlg-framework 后端项目：http:&#x2F;&#x2F;gitlab.infoepoch.com&#x2F;rdd&#x2F;wqxlg-admin 后管前端项目：http:&#x2F;&#x2F;gitlab.infoepoch.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2025/10/27/%E9%9D%A2%E8%AF%95/%E7%AA%81%E5%87%BB%E6%A3%80%E6%9F%A5/image-20251028090220516.png">
-<meta property="og:image" content="http://example.com/2025/10/27/%E9%9D%A2%E8%AF%95/%E7%AA%81%E5%87%BB%E6%A3%80%E6%9F%A5/image-20251028090736311.png">
-<meta property="og:image" content="http://example.com/2025/10/27/%E9%9D%A2%E8%AF%95/%E7%AA%81%E5%87%BB%E6%A3%80%E6%9F%A5/image-20251028090931623.png">
-<meta property="og:image" content="http://example.com/2025/10/27/%E9%9D%A2%E8%AF%95/%E7%AA%81%E5%87%BB%E6%A3%80%E6%9F%A5/image-20260123101647019.png">
-<meta property="og:image" content="http://example.com/2025/10/27/%E9%9D%A2%E8%AF%95/%E7%AA%81%E5%87%BB%E6%A3%80%E6%9F%A5/image-20260123102100030.png">
-<meta property="article:published_time" content="2025-10-27T08:04:14.000Z">
-<meta property="article:modified_time" content="2026-01-23T02:21:02.428Z">
+<meta property="og:image" content="http://example.com/2026/01/27/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%90%83%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/image-20260127134604246.png">
+<meta property="og:image" content="http://example.com/2026/01/27/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%90%83%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/image-20260127135145607.png">
+<meta property="og:image" content="http://example.com/2026/01/27/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%90%83%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/image-20260127135713954.png">
+<meta property="og:image" content="http://example.com/2026/01/27/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%90%83%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/image-20260127140017210.png">
+<meta property="og:image" content="http://example.com/2026/01/27/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%90%83%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/image-20260127140213506.png">
+<meta property="og:image" content="http://example.com/2026/01/27/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%90%83%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/image-20260127140532259.png">
+<meta property="og:image" content="http://example.com/2026/01/27/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%90%83%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/image-20260127141615538.png">
+<meta property="og:image" content="http://example.com/2026/01/27/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%90%83%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/image-20260127140806457.png">
+<meta property="article:published_time" content="2026-01-27T05:36:12.000Z">
+<meta property="article:modified_time" content="2026-01-27T06:17:03.633Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="突击检查">
+<meta property="article:tag" content="网球项目">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2025/10/27/%E9%9D%A2%E8%AF%95/%E7%AA%81%E5%87%BB%E6%A3%80%E6%9F%A5/image-20251028090220516.png">
+<meta name="twitter:image" content="http://example.com/2026/01/27/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%90%83%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/image-20260127134604246.png">
   
   
   
-  <title>突击检查 - Caddy博客</title>
+  <title>网球项目文档 - Caddy博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -222,7 +225,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="突击检查"></span>
+            <span id="subtitle" data-typed-text="网球项目文档"></span>
           
         </div>
 
@@ -233,8 +236,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-10-27 16:04" pubdate>
-          2025年10月27日 下午
+        <time datetime="2026-01-27 13:36" pubdate>
+          2026年1月27日 下午
         </time>
       </span>
     
@@ -245,7 +248,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          364 字
         
       </span>
     
@@ -256,7 +259,7 @@
         
         
         
-          13 分钟
+          4 分钟
         
       </span>
     
@@ -293,112 +296,69 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">突击检查</h1>
+            <h1 id="seo-header">网球项目文档</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="突击检查"><a href="#突击检查" class="headerlink" title="突击检查"></a>突击检查</h1><h2 id="MySql"><a href="#MySql" class="headerlink" title="MySql"></a>MySql</h2><h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p>QA：并发操作会导致什么问题？</p>
-<p>e.g：</p>
-<p>脏读：读到还没提交的数据</p>
-<p>不可重复读：在一个事务内，两次读取的同一数据，数据出现不一致情况</p>
-<p>幻读：在一个事务内，两次读取的记录数量不一致</p>
-<p>QA：事务隔离级别有哪些？</p>
-<p>e.g：</p>
-<p>读未提交：会有脏读、不可重复读和幻读问题</p>
-<p>读已提交：会有不可重复读和幻读问题</p>
-<p>可重复读：会出现幻读问题</p>
-<p>串行化：无事务问题</p>
-<p>QA：MySql默认隔离级别是【可重复读】级别，那么是如何解决幻读问题的？</p>
-<p>e.g</p>
-<ul>
-<li>针对【快照读】，使用了MVCC多版本并发控制来解决幻读问题</li>
-<li>针对【当前读】，使用了🔒next-key-lock(记录锁+间隙锁)来解决幻读问题</li>
+                <h1 id="网球学练场项目运行文档"><a href="#网球学练场项目运行文档" class="headerlink" title="网球学练场项目运行文档"></a>网球学练场项目运行文档</h1><blockquote>
+<p>[!NOTE]</p>
+<p>参考地址：<a target="_blank" rel="noopener" href="http://oa.infoepoch.com/issue/34040">http://oa.infoepoch.com/issue/34040</a></p>
+</blockquote>
+<h2 id="项目下载"><a href="#项目下载" class="headerlink" title="项目下载"></a>项目下载</h2><ul>
+<li>依赖框架：<a target="_blank" rel="noopener" href="http://gitlab.infoepoch.com/rdd/wqxlg-framework">http://gitlab.infoepoch.com/rdd/wqxlg-framework</a></li>
+<li>后端项目：<a target="_blank" rel="noopener" href="http://gitlab.infoepoch.com/rdd/wqxlg-admin">http://gitlab.infoepoch.com/rdd/wqxlg-admin</a></li>
+<li>后管前端项目：<a target="_blank" rel="noopener" href="http://gitlab.infoepoch.com/rdd/wqxlg-admin-spa">http://gitlab.infoepoch.com/rdd/wqxlg-admin-spa</a></li>
+<li>小程序项目：<a target="_blank" rel="noopener" href="http://gitlab.infoepoch.com/rdd/wqxlg-weapp-spa">http://gitlab.infoepoch.com/rdd/wqxlg-weapp-spa</a></li>
 </ul>
-<p>QA：读视图是个啥？</p>
-<p><img src="/2025/10/27/%E9%9D%A2%E8%AF%95/%E7%AA%81%E5%87%BB%E6%A3%80%E6%9F%A5/image-20251028090220516.png" srcset="/img/loading.gif" lazyload alt="image-20251028090220516"></p>
-<p>读视图中有四个重要字段：</p>
+<h2 id="项目启动"><a href="#项目启动" class="headerlink" title="项目启动"></a>项目启动</h2><h3 id="后端项目启动"><a href="#后端项目启动" class="headerlink" title="后端项目启动"></a>后端项目启动</h3><p>版本依赖</p>
 <ul>
-<li>creator_trx_id：创建ReadView的事务id</li>
-<li>m_ids：【活跃事务】中的事务id列表；活跃的事务表示开启了事务，还没有提交的事务</li>
-<li>min_trx_id：【活跃事务】列表中最小的事务id</li>
-<li>max_trx_id：待分配的下一个事务id</li>
-</ul>
-<p>还有在<code>聚簇索引</code>记录中的两个隐藏字段：</p>
-<p><img src="/2025/10/27/%E9%9D%A2%E8%AF%95/%E7%AA%81%E5%87%BB%E6%A3%80%E6%9F%A5/image-20251028090736311.png" srcset="/img/loading.gif" lazyload alt="image-20251028090736311"></p>
-<ul>
-<li>trx_id：事务id</li>
-<li>roll_pointer：回滚指针，指向旧版记录</li>
-</ul>
-<p>创建ReadView后，可以分为三种情况：</p>
-<p><img src="/2025/10/27/%E9%9D%A2%E8%AF%95/%E7%AA%81%E5%87%BB%E6%A3%80%E6%9F%A5/image-20251028090931623.png" srcset="/img/loading.gif" lazyload alt="image-20251028090931623"></p>
-<ul>
-<li><p>如果<code>当前事务id小于min_trx_id</code>，表示这个版本是在创建ReadView之前就已经存在的事务，所以这个版本对当前事务是<code>可见的</code>。</p>
+<li><p>jdk17+</p>
 </li>
-<li><p>如果<code>当前事务id大于等于max_trx_id</code>，表示这个版本是在创建ReadView之后才创建的事务，所以这个版本对当前事务是<code>不可见的</code>。</p>
+<li><p>maven3.8+</p>
 </li>
-<li><p>如果<code>当前事务id在min_trx_id和max_trx_id之间</code>，那么就判断当前事务id是否在【活跃事务】列表中</p>
-<ul>
-<li>当前事务id在【活跃事务】列表中，表示该版本依然活跃并且未提交，所以这个版本对当前事务是<code>不可见的</code>。</li>
-<li>当前事务id不在【活跃事务】列表中，表示该活跃事务已经提交了，所以这个版本对当前是<code>可见的</code>。</li>
-</ul>
+<li><p>配置环境变量：<u><strong>WQXLG_APP_SECRET&#x3D;60157aZbN1w8Xu8VF3oSNZXGrKw3jZ&#x2F;3b&#x2F;bTL41BS4FlvaGcudrpl1Q57meWfYuSTym92SnLwuw=;WQXLG_WORKER_FOLDER&#x3D;后端项目根目录路径地址</strong></u></p>
+</li>
+<li><p>本地测试环境项目启动配置</p>
+<p><img src="/2026/01/27/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%90%83%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/image-20260127134604246.png" srcset="/img/loading.gif" lazyload alt="image-20260127134604246"></p>
 </li>
 </ul>
-<h3 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h3><p>锁分为表级锁和行级锁。</p>
-<p>表级锁：表锁、意向锁、自增锁</p>
-<blockquote>
-<p> 为什么要有意向锁？</p>
-<p>意向锁是为了快速判断表里是否有记录被加锁，如果没有【意向锁】，那么再加【意向排它锁】的时候，就需要遍历表中所有记录，判读记录是否存在独占锁，效率很低。</p>
-</blockquote>
-<p>行级锁：record_lock，grap_lock，next_key_lock</p>
-<h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><p>分类：redo_log，undo_log，bing_log</p>
-<p>redo_log：用于数据持久化保存</p>
-<blockquote>
-<p>为什么需要redo_log?</p>
-<p>e.g：防止断电导致数据丢失！！！innodb引擎会将内存数据标记为脏页，然后写入redo_log文件，不会立即刷新到磁盘中，就直接结束了，由后台线程定期将缓存数据刷新到内存中。</p>
-</blockquote>
-<blockquote>
-<p>redo_log慢了怎么办？</p>
-<p>redo_log日志两个文件，每个文件有1G的存储容量，当redo_log_1文件写满后，会向redo_log_2文件中写入，当redo_log_2文件也写满后，会循环重写到redo_log_1文件中进行覆盖重写操作。</p>
-</blockquote>
-<p>undo_log：用于回滚操作</p>
-<blockquote>
-<p>为什么需要undo_log?</p>
-<p>e.g：为了事务回滚，将数据恢复到之前的状态，保证原子性！！！还有一个作用是可以通过ReadView+undo_log形成MVCC并发版本控制。</p>
-</blockquote>
-<p>bin_log：日志同步操作</p>
-<blockquote>
-<p>为什么会有bin_log日志文件？</p>
-<p>mysql会在数据操作完成后，在server端生成一个bin_log的日志文件，而redo_log和undo_log都是在引擎层生成的日志文件，bin_log文件中记录了数据库表和数据变化的日志。但是bin_log有个问题就是没有<code>奔溃恢复</code>能力，所以引入了redo_log!!!</p>
-</blockquote>
-<p>🌈 为什么要需要两阶段提交！！！！？？</p>
-<p>因为要保证redo_log和bin_log同时写入成功！！！</p>
-<p>redo_log写入分成了两个阶段，prepare阶段redo_log的状态是准备状态，在commit阶段，bin_log写入成功后，再将redo_log的状态改成commit状态</p>
-<h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h3 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h3><h4 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h4><p><code>AOF是存储的命令语句。</code></p>
-<p>aof提供了三种写回策略：</p>
+<h3 id="后管前端项目启动"><a href="#后管前端项目启动" class="headerlink" title="后管前端项目启动"></a>后管前端项目启动</h3><p>依赖版本：</p>
 <ul>
-<li>Always：总是写回，意思就是每次执行一个更新删除命令，都会保存到aof文件中</li>
-<li>EverySec：每秒写回，意思是每次写命令执行执行完之后，先将命令写入到aof缓冲区中，每隔1秒将缓冲区的内容写入到文件中</li>
-<li>No：不由redis来控制写回磁盘的时机，转交给操作系统来控制写回的时机。</li>
+<li>node18+</li>
+<li>npm9.8.1+</li>
 </ul>
-<p>QA. 什么是AOF的重写机制？</p>
-<p>e.g：避免aof的文件太大，提供了redis的重写机制，将之前重复性的语句命令进行<code>压缩</code>，从而使得aof文件变小。aof重写的时候，会新增一个文件，都往这个新的文件中追加，当重写成功后，这个新的aof文件会替换原来的aof文件，如果重写失败了，直接删除这个新的aof文件即可，不会造成数据污染问题。</p>
-<h4 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h4><p><code>RDB存储的数据快照。</code></p>
-<h3 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h3><ul>
-<li>redis单节点部署</li>
-<li>redis高可用架构</li>
-<li>redis-sentinel哨兵模式架构</li>
-<li>redis-cluster集群架构<ul>
-<li>通过<code>Gossip传播协议</code>，将本节点存储的信息传播出去，直到所有的节点数据一致。</li>
-<li>redis-cluster集群一共分了<code>16384个槽</code>，均匀的分布在多个主节点上。</li>
-<li>通过计算key的hash值，然后再对16384个槽取模，得到具体的槽位置，如果没有在当前节点，通过<code>MOVED重定向</code>到对应的节点，如果槽正在转移，则通过<code>ACK重定向</code>到对应的节点上。</li>
+<p>项目启动：</p>
+<p>Package.json文件中定义的启动脚本命令:</p>
+<p>npm run dev：测试环境启动（本地启动测试常用⭐️）</p>
+<p>npm run prod：生产环境启动</p>
+<p>npm run build：生产环境打包</p>
+<p>npm run build:dev：测试环境打包</p>
+<p><img src="/2026/01/27/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%90%83%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/image-20260127135145607.png" srcset="/img/loading.gif" lazyload alt="image-20260127135145607"></p>
+<h3 id="小程序项目启动"><a href="#小程序项目启动" class="headerlink" title="小程序项目启动"></a>小程序项目启动</h3><p>依赖版本：</p>
+<ul>
+<li>node18+</li>
+<li>npm9.8.1+</li>
 </ul>
-</li>
-</ul>
-<h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><p>spring加载bean的生命周期图：</p>
-<p><img src="/2025/10/27/%E9%9D%A2%E8%AF%95/%E7%AA%81%E5%87%BB%E6%A3%80%E6%9F%A5/image-20260123101647019.png" srcset="/img/loading.gif" lazyload alt="image-20260123101647019"></p>
-<p>spring加载bean的各个主要类：</p>
-<p><img src="/2025/10/27/%E9%9D%A2%E8%AF%95/%E7%AA%81%E5%87%BB%E6%A3%80%E6%9F%A5/image-20260123102100030.png" srcset="/img/loading.gif" lazyload alt="image-20260123102100030"></p>
+<blockquote>
+<p>[!IMPORTANT]</p>
+<p>有两个文件需要注意：</p>
+<p>.env.development：本地环境变量文件，需要将启动地址改成本机ip地址</p>
+<p><img src="/2026/01/27/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%90%83%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/image-20260127135713954.png" srcset="/img/loading.gif" lazyload alt="image-20260127135713954"></p>
+<p>manifest.json：小程序配置文件；</p>
+<p><img src="/2026/01/27/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%90%83%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/image-20260127140017210.png" srcset="/img/loading.gif" lazyload alt="image-20260127140017210"></p>
+</blockquote>
+<p>项目启动：</p>
+<p>控制台启动命令：</p>
+<p>本地测试启动：npm run dev:mp-weixin</p>
+<p>生产打包：npm run build:mp-weixin</p>
+<p><img src="/2026/01/27/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%90%83%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/image-20260127140213506.png" srcset="/img/loading.gif" lazyload alt="image-20260127140213506"></p>
+<p>使用npm run dev:mp-weixin命令启动成功后，打包微信开发者工具，打开编译打包后的目录</p>
+<p><img src="/2026/01/27/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%90%83%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/image-20260127140532259.png" srcset="/img/loading.gif" lazyload alt="image-20260127140532259"></p>
+<p>微信开发者工具导入编译打包后的目录路径，点击创建</p>
+<p><img src="/2026/01/27/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%90%83%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/image-20260127141615538.png" srcset="/img/loading.gif" lazyload alt="image-20260127141615538"></p>
+<p>微信开发者工具配置修改成下面一样，点击清缓存，重新编译刷新</p>
+<p><img src="/2026/01/27/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%90%83%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/image-20260127140806457.png" srcset="/img/loading.gif" lazyload alt="image-20260127140806457"></p>
 
                 
               </div>
@@ -411,7 +371,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E7%AA%81%E5%87%BB%E6%A3%80%E6%9F%A5/" class="print-no-link">#突击检查</a>
+        <a href="/tags/%E7%BD%91%E7%90%83%E9%A1%B9%E7%9B%AE/" class="print-no-link">#网球项目</a>
       
     </div>
   
@@ -423,8 +383,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>突击检查</div>
-      <div>http://example.com/2025/10/27/面试/突击检查/</div>
+      <div>网球项目文档</div>
+      <div>http://example.com/2026/01/27/运维/网球项目文档/</div>
     </div>
     <div class="license-meta">
       
@@ -436,7 +396,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年10月27日</div>
+          <div>2026年1月27日</div>
         </div>
       
       
@@ -468,18 +428,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/10/28/%E6%A1%86%E6%9E%B6/%E4%BA%8B%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/" title="分布式事务">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">分布式事务</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/10/16/%E8%BF%90%E7%BB%B4/bc-linux%E5%AE%89%E8%A3%85%E5%8C%85%E5%91%BD%E4%BB%A4/" title="bc_linux安装包命令">
-                        <span class="hidden-mobile">bc_linux安装包命令</span>
+                      <a href="/2026/01/20/%E6%A1%86%E6%9E%B6/seata/seata/" title="seata">
+                        <span class="hidden-mobile">seata</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

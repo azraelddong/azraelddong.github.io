@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/01/13/%E8%BF%90%E7%BB%B4/GaussDB/image-20260116152630090.png">
 <meta property="article:published_time" content="2026-01-13T02:02:31.000Z">
-<meta property="article:modified_time" content="2026-01-20T07:48:57.226Z">
+<meta property="article:modified_time" content="2026-01-22T02:45:56.907Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="GaussDB">
 <meta name="twitter:card" content="summary_large_image">
@@ -311,7 +311,7 @@
 <p>创建用户并赋予SYSADMIN角色权限：create user hccdp sysadmin <strong>identified by</strong> ‘密码’</p>
 <p>如果不小心没有赋予SYSADMIN角色，如何解决？</p>
 <p>1.create user test identified by ‘xxxx’;</p>
-<p>2.alter user test sysadmin; (重新给用户test赋予sysadmin角色)</p>
+<p>2.alter user test with sysadmin; (重新给用户test赋予sysadmin角色)</p>
 <p>撤消test用户sysadmin角色：alter user test with nosysadmin;</p>
 <p>创建一个tpcds模式，并创建一个表reason?</p>
 <p>create schema tpcds;</p>
